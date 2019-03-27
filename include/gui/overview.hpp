@@ -33,6 +33,11 @@ class QtMotionGUI : public QObject {
   
   bool not_first_state;
   State last_state;
+
+  bool average_not_first_state;
+  State average_last_state;
+  float average_lastX, average_lastY;
+
   std::list<State*> trajectory_states;
   std::list<State*>::const_iterator trajectory_iterator;
 
@@ -43,6 +48,7 @@ public:
 
   void addState(const State& state,
 		const Qt::GlobalColor motion_color = Qt::blue);
+
 
   void addStateAverage(const State& state,
 		const Qt::GlobalColor motion_color = Qt::red);

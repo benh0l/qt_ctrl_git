@@ -35,13 +35,10 @@ void QtMotionGUI::addTrajectory(const std::list<State*>& trajectory) {
     } // end of for (each state of the trajectory)
     not_first_state = false;
 
-    std::cout << "mdr" << std::endl;
-
     trajectory_states = trajectory;
 
-    std::cout << "lol" << std::endl;
+    //trajectory_end = trajectory;
     trajectory_iterator = trajectory.begin();
-    std::cout << "ptdr" << std::endl;
 } // end of void QtMotionGUI::addTrajectory(const std::list<State*>&)-
 
 void QtMotionGUI::addState(const State& state,
@@ -85,41 +82,50 @@ void QtMotionGUI::addState(const State& state,
     last_state = state;
 } // end of void QtMotionGUI::addState(double[]) ---------------------
 
+
 void QtMotionGUI::addStateAverage(const State& state, const Qt::GlobalColor motion_color){
-    static const int abscIdx = 0, ordoIdx = abscIdx + 1,
+   
+ static const int abscIdx = 0, ordoIdx = abscIdx + 1,
             timeIdx = ordoIdx + 1, tranIdx = timeIdx + 1,  // was previously
             rotaIdx = tranIdx + 1, nmbrIdx = rotaIdx + 1;  // an enum
-    if (not_first_state) {
+
+
+
+
+        const State ti = **trajectory_iterator;
+
+        // extract the data from the state
+        const Config q = state.configuration(), qTI = ti.configuration();
+        const Point P = q.position(), PTI = qTI.position();
+
+	const float averageX = (PTI.xCoord() +P.xCoord())/2;
+	const float averageY = (PTI.yCoord() +P.yCoord())/2;
+	//std::cout << "lol"<<averageX << " " << averageY << std::endl;
+
+    if (average_not_first_state) {
         // Setting the color
         const QPen motion_pen = QColor(motion_color);
         // Scalling factors
         static const double factors[nmbrIdx]
                 = {50, 50, 25, 100, 300 / M_PI};
+
+
+       /* const State ti = **trajectory_iterator;
+
         // extract the data from the state
+        const Config old_q = average_last_state.configuration(),
+                q = state.configuration(), qTI = ti.configuration();
+        const Point  old_P = old_q.position(), P = q.position(), PTI = qTI.position();*/
 
-        std::cout << "mdr 2" << std::endl;
-        State kk = **trajectory_iterator;
-
-        std::cout << "mdr téki" << std::endl;
-        const Config kky = kk.configuration();
-
-        std::cout << "rofl" << std::endl;
-
-        //const Config old_q = last_state.configuration(),
-        const Config old_q = kky,
-
-        //const Config old_q = **trajectory_iterator.configuration(),
-                q = state.configuration();
-
-
-        std::cout << "hhhhhh" << std::endl;
-
-        const Point  old_P = old_q.position(), P = q.position();
+	
         // add a new line to the path (and redraw it)
-        path_scene.addLine(factors[abscIdx] * old_P.xCoord(),
-                           - factors[ordoIdx] * old_P.yCoord(),
-                           factors[abscIdx] * P.xCoord(),
-                           - factors[ordoIdx] * P.yCoord(), motion_pen);
+       // path_scene.addLine(factors[abscIdx] * old_P.xCoord(),
+         //                  - factors[ordoIdx] * old_P.yCoord(),
+                          
+        path_scene.addLine(factors[abscIdx] * average_lastX,
+                           - factors[ordoIdx] * average_lastY,
+                             factors[abscIdx] * averageX,
+                           - factors[ordoIdx] * averageY, motion_pen);
         // add a new line to the translation velocity profile
         trans_vel_scene.addLine(factors[timeIdx] * last_state.date(),
                                 - factors[tranIdx]
@@ -137,9 +143,13 @@ void QtMotionGUI::addStateAverage(const State& state, const Qt::GlobalColor moti
                               * state.rotationVelocity(), motion_pen);
     } // end of if (not_first_state)
     // memorize the last state for future drawing
-    //not_first_state = true;
-    //last_state = state;
+    average_not_first_state = true;
+    average_last_state = state;
+    average_lastX = averageX;
+    average_lastY = averageY;
 
-    trajectory_iterator++;
 
+    if(trajectory_iterator != trajectory_states.end()){
+     trajectory_iterator++;
+   }
 }
