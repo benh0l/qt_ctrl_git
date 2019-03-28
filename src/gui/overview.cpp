@@ -28,14 +28,17 @@ QtMotionGUI::QtMotionGUI() : motion_window(), not_first_state(false) {
 
 void QtMotionGUI::addTrajectory(const std::list<State*>& trajectory) {
     static const Qt::GlobalColor traj_color = Qt::green;
+    trajectory_nb_pts = 0;
     // adds each state of the trajectory, using traj_color
     for(std::list<State*>::const_iterator it = trajectory.begin();
         it != trajectory.end(); it++) {
         addState(**it, traj_color);
+        trajectory_nb_pts++;
     } // end of for (each state of the trajectory)
     not_first_state = false;
-
-    trajectory_states = trajectory;
+    average_nb_pts = 0;
+    average_delay_count = 0;
+    //trajectory_states = trajectory;
 
     //trajectory_end = trajectory;
     trajectory_iterator = trajectory.begin();
@@ -102,7 +105,7 @@ void QtMotionGUI::addStateAverage(const State& state, const Qt::GlobalColor moti
 	const float averageY = (PTI.yCoord() +P.yCoord())/2;
 	//std::cout << "lol"<<averageX << " " << averageY << std::endl;
 
-    if (average_not_first_state) {
+    if (average_not_first_state && average_nb_pts < trajectory_nb_pts-1) {
         // Setting the color
         const QPen motion_pen = QColor(motion_color);
         // Scalling factors
@@ -144,12 +147,21 @@ void QtMotionGUI::addStateAverage(const State& state, const Qt::GlobalColor moti
     } // end of if (not_first_state)
     // memorize the last state for future drawing
     average_not_first_state = true;
-    average_last_state = state;
+    //average_last_state = state;
     average_lastX = averageX;
     average_lastY = averageY;
 
-
-    if(trajectory_iterator != trajectory_states.end()){
+//if(trajectory_iterator != trajectory_states.end()){
+    if(average_nb_pts < trajectory_nb_pts-1){
+     average_delay_count++;
+     if(average_delay_count ==5){
+        average_delay_count = 0;
+     }else{
      trajectory_iterator++;
+     average_nb_pts ++;
+
+	}
    }
+
+
 }

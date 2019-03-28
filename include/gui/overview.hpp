@@ -35,10 +35,13 @@ class QtMotionGUI : public QObject {
   State last_state;
 
   bool average_not_first_state;
-  State average_last_state;
+  //State average_last_state;
+  int trajectory_nb_pts;
+  int average_nb_pts;
+  int average_delay_count;
   float average_lastX, average_lastY;
 
-  std::list<State*> trajectory_states;
+  //std::list<State*> trajectory_states;
   std::list<State*>::const_iterator trajectory_iterator;
 
 public:
