@@ -1,0 +1,10 @@
+<map id="track.hpp" name="track.hpp">
+<area shape="rect" id="node2" href="$analytic_8hpp.html" title="Path following controller class, with an analytic approach. " alt="" coords="64,80,156,107"/>
+<area shape="rect" id="node5" href="$imitate_8hpp.html" title="Path following controller class, copying the velocities. " alt="" coords="180,80,267,107"/>
+<area shape="rect" id="node7" href="$PID_8hpp.html" title="Path following controller class, using a PID. " alt="" coords="291,80,361,107"/>
+<area shape="rect" id="node9" href="$track_8cpp.html" title="Path following controller abstract class. " alt="" coords="385,80,461,107"/>
+<area shape="rect" id="node3" href="$analytic_8cpp.html" title="Path following controller class, with an analytic approach. " alt="" coords="5,155,97,181"/>
+<area shape="rect" id="node4" href="$window_8cpp.html" title="Qt based GUI for qt_ctrl. " alt="" coords="122,155,213,181"/>
+<area shape="rect" id="node6" href="$imitate_8cpp.html" title="Path following controller class, copying the velocities. " alt="" coords="237,155,324,181"/>
+<area shape="rect" id="node8" href="$PID_8cpp.html" title="Path following controller class, using a PID. " alt="" coords="348,155,419,181"/>
+</map>

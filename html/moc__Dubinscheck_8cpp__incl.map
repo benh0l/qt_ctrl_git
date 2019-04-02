@@ -1,0 +1,8 @@
+<map id="moc_Dubinscheck.cpp" name="moc_Dubinscheck.cpp">
+<area shape="rect" id="node2" href="$Dubinscheck_8hpp.html" title="Qt based GUI to check Dubins&#39; path computation. " alt="" coords="135,80,258,107"/>
+<area shape="rect" id="node6" href="$Dubins_8hpp.html" title="Shortest path between two configurations. " alt="" coords="332,155,459,181"/>
+<area shape="rect" id="node8" href="$configuration_8hpp.html" title="Configuration class, i.e. oriented point in two dimension. " alt="" coords="383,229,543,256"/>
+<area shape="rect" id="node9" href="$point_8hpp.html" title="2D point class. " alt="" coords="406,304,521,331"/>
+<area shape="rect" id="node10" href="$vector_8hpp.html" title="2D vector class. " alt="" coords="402,379,525,405"/>
+<area shape="rect" id="node11" href="$object_8hpp.html" title="Static mathematical methods. " alt="" coords="403,453,524,480"/>
+</map>

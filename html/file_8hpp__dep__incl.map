@@ -1,0 +1,12 @@
+<map id="file.hpp" name="file.hpp">
+<area shape="rect" id="node2" href="$track_8hpp.html" title="Path following controller abstract class. " alt="" coords="227,80,303,107"/>
+<area shape="rect" id="node5" href="$window_8cpp.html" title="Qt based GUI for qt_ctrl. " alt="" coords="277,229,367,256"/>
+<area shape="rect" id="node11" href="$file_8cpp.html" title="File controller (teleoperation) class. " alt="" coords="478,80,542,107"/>
+<area shape="rect" id="node3" href="$analytic_8hpp.html" title="Path following controller class, with an analytic approach. " alt="" coords="5,155,97,181"/>
+<area shape="rect" id="node6" href="$imitate_8hpp.html" title="Path following controller class, copying the velocities. " alt="" coords="221,155,308,181"/>
+<area shape="rect" id="node8" href="$PID_8hpp.html" title="Path following controller class, using a PID. " alt="" coords="332,155,403,181"/>
+<area shape="rect" id="node10" href="$track_8cpp.html" title="Path following controller abstract class. " alt="" coords="121,155,197,181"/>
+<area shape="rect" id="node4" href="$analytic_8cpp.html" title="Path following controller class, with an analytic approach. " alt="" coords="5,229,97,256"/>
+<area shape="rect" id="node7" href="$imitate_8cpp.html" title="Path following controller class, copying the velocities. " alt="" coords="165,229,252,256"/>
+<area shape="rect" id="node9" href="$PID_8cpp.html" title="Path following controller class, using a PID. " alt="" coords="392,229,463,256"/>
+</map>

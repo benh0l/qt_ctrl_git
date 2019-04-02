@@ -1,0 +1,13 @@
+<map id="window.hpp" name="window.hpp">
+<area shape="rect" id="node9" href="$ctrlWdgt_8hpp.html" title="Qt based control widget for qt_ctrl. " alt="" coords="741,80,859,107"/>
+<area shape="rect" id="node24" href="$display_8hpp.html" title="Qt widget displaying data for qt_ctrl. " alt="" coords="964,80,1073,107"/>
+<area shape="rect" id="node13" href="$controller_8hpp.html" title="Controller abstract class. " alt="" coords="743,229,865,256"/>
+<area shape="rect" id="node15" href="$motion_8hpp.html" title="Motion model for qt_ctrl. " alt="" coords="803,304,928,331"/>
+<area shape="rect" id="node18" href="$state_8hpp.html" title="State class, i.e. configuration and velocities. " alt="" coords="984,304,1099,331"/>
+<area shape="rect" id="node19" href="$configuration_8hpp.html" title="Configuration class, i.e. oriented point in two dimension. " alt="" coords="961,379,1121,405"/>
+<area shape="rect" id="node20" href="$point_8hpp.html" title="2D point class. " alt="" coords="969,453,1084,480"/>
+<area shape="rect" id="node21" href="$vector_8hpp.html" title="2D vector class. " alt="" coords="912,528,1035,555"/>
+<area shape="rect" id="node22" href="$object_8hpp.html" title="Static mathematical methods. " alt="" coords="886,603,1007,629"/>
+<area shape="rect" id="node27" href="$ROS__node_8hpp.html" title="ROS communication node. " alt="" coords="1146,155,1297,181"/>
+<area shape="rect" id="node35" href="$overview_8hpp.html" title="Qt based overview of the robot&#39;s motion. " alt="" coords="1696,155,1816,181"/>
+</map>

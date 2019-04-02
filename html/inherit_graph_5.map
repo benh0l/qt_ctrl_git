@@ -1,0 +1,8 @@
+<map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
+<area shape="rect" id="node1" href="$classObject.html" title="This class defines static mathematical methods. " alt="" coords="5,107,65,133"/>
+<area shape="rect" id="node2" href="$classConfig.html" title="This class defines a configuration, i.e. an oriented point in two dimension. " alt="" coords="129,5,189,32"/>
+<area shape="rect" id="node3" href="$classDubinsPath.html" title="This class computes the shortest path between two configurations. " alt="" coords="113,56,204,83"/>
+<area shape="rect" id="node4" href="$classPoint.html" title="This class defines a point in two dimension. " alt="" coords="133,107,185,133"/>
+<area shape="rect" id="node5" href="$classState.html" title="This class defines a state, i.e. a configuration and its (translation and rotation) velocities..." alt="" coords="132,157,185,184"/>
+<area shape="rect" id="node6" href="$classVector.html" title="This class defines a vector in two dimension. " alt="" coords="129,208,189,235"/>
+</map>

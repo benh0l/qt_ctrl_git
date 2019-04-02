@@ -1,0 +1,8 @@
+<map id="controller.hpp" name="controller.hpp">
+<area shape="rect" id="node3" href="$motion_8hpp.html" title="Motion model for qt_ctrl. " alt="" coords="101,80,226,107"/>
+<area shape="rect" id="node6" href="$state_8hpp.html" title="State class, i.e. configuration and velocities. " alt="" coords="250,80,365,107"/>
+<area shape="rect" id="node7" href="$configuration_8hpp.html" title="Configuration class, i.e. oriented point in two dimension. " alt="" coords="227,155,387,181"/>
+<area shape="rect" id="node8" href="$point_8hpp.html" title="2D point class. " alt="" coords="235,229,350,256"/>
+<area shape="rect" id="node9" href="$vector_8hpp.html" title="2D vector class. " alt="" coords="178,304,301,331"/>
+<area shape="rect" id="node10" href="$object_8hpp.html" title="Static mathematical methods. " alt="" coords="152,379,273,405"/>
+</map>

@@ -1,0 +1,12 @@
+<map id="PID.cpp" name="PID.cpp">
+<area shape="rect" id="node2" href="$PID_8hpp.html" title="Path following controller class, using a PID. " alt="" coords="203,80,295,107"/>
+<area shape="rect" id="node3" href="$track_8hpp.html" title="Path following controller abstract class. " alt="" coords="200,155,299,181"/>
+<area shape="rect" id="node6" href="$state_8hpp.html" title="State class, i.e. configuration and velocities. " alt="" coords="251,379,365,405"/>
+<area shape="rect" id="node13" href="$file_8hpp.html" title="File controller (teleoperation) class. " alt="" coords="157,229,243,256"/>
+<area shape="rect" id="node7" href="$configuration_8hpp.html" title="Configuration class, i.e. oriented point in two dimension. " alt="" coords="211,453,371,480"/>
+<area shape="rect" id="node8" href="$point_8hpp.html" title="2D point class. " alt="" coords="217,528,332,555"/>
+<area shape="rect" id="node9" href="$vector_8hpp.html" title="2D vector class. " alt="" coords="152,603,275,629"/>
+<area shape="rect" id="node10" href="$object_8hpp.html" title="Static mathematical methods. " alt="" coords="122,677,243,704"/>
+<area shape="rect" id="node14" href="$controller_8hpp.html" title="Controller abstract class. " alt="" coords="139,304,261,331"/>
+<area shape="rect" id="node16" href="$motion_8hpp.html" title="Motion model for qt_ctrl. " alt="" coords="5,379,131,405"/>
+</map>

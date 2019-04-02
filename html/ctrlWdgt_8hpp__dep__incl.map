@@ -1,0 +1,8 @@
+<map id="ctrlWdgt.hpp" name="ctrlWdgt.hpp">
+<area shape="rect" id="node2" href="$viewCtrl_8hpp.html" title="Qt control widget showing current and aimed velocities. " alt="" coords="81,80,175,107"/>
+<area shape="rect" id="node7" href="$window_8hpp.html" title="Qt based GUI for qt_ctrl package. " alt="" coords="200,80,291,107"/>
+<area shape="rect" id="node3" href="$teleop_8hpp.html" title="Qt based teleoperation widget for qt_ctrl. " alt="" coords="5,155,88,181"/>
+<area shape="rect" id="node6" href="$viewCtrl_8cpp.html" title="Qt control widget showing current and aimed velocities. " alt="" coords="113,155,207,181"/>
+<area shape="rect" id="node4" href="$teleop_8cpp.html" title="Qt based teleoperation widget for qt_ctrl. " alt="" coords="5,229,88,256"/>
+<area shape="rect" id="node5" href="$window_8cpp.html" title="Qt based GUI for qt_ctrl. " alt="" coords="156,229,247,256"/>
+</map>

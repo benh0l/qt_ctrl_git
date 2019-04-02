@@ -1,0 +1,5 @@
+<map id="AnalyticCtrl" name="AnalyticCtrl">
+<area shape="rect" id="node2" href="$classTrackingCtrl.html" title="TrackingCtrl aims at following a trajectory with the robot. " alt="" coords="5,229,99,256"/>
+<area shape="rect" id="node3" href="$classFileCtrl.html" title="FileCtrl allows to control the robot from a file. " alt="" coords="20,155,84,181"/>
+<area shape="rect" id="node4" href="$classController.html" title="Controller is the abstract class inherited by all the implemented controllers. " alt="" coords="13,80,91,107"/>
+</map>

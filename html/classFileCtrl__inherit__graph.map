@@ -1,0 +1,7 @@
+<map id="FileCtrl" name="FileCtrl">
+<area shape="rect" id="node4" href="$classTrackingCtrl.html" title="TrackingCtrl aims at following a trajectory with the robot. " alt="" coords="115,229,208,256"/>
+<area shape="rect" id="node2" href="$classController.html" title="Controller is the abstract class inherited by all the implemented controllers. " alt="" coords="122,80,201,107"/>
+<area shape="rect" id="node5" href="$classAnalyticCtrl.html" title="AnalyticCtrl compute the trajectory&#39;s velocities using analytic geometry and mecanic. " alt="" coords="5,304,96,331"/>
+<area shape="rect" id="node6" href="$classImitateCtrl.html" title="ImitateCtrl copies the trajectory&#39;s velocities. " alt="" coords="120,304,203,331"/>
+<area shape="rect" id="node7" href="$classPIDCtrl.html" title="PIDCtrl uses a PID to compute the trajectory&#39;s velocities. " alt="" coords="227,304,293,331"/>
+</map>

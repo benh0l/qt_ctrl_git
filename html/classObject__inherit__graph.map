@@ -1,0 +1,7 @@
+<map id="Object" name="Object">
+<area shape="rect" id="node2" href="$classConfig.html" title="This class defines a configuration, i.e. an oriented point in two dimension. " alt="" coords="5,80,65,107"/>
+<area shape="rect" id="node3" href="$classDubinsPath.html" title="This class computes the shortest path between two configurations. " alt="" coords="90,80,181,107"/>
+<area shape="rect" id="node4" href="$classPoint.html" title="This class defines a point in two dimension. " alt="" coords="205,80,257,107"/>
+<area shape="rect" id="node5" href="$classState.html" title="This class defines a state, i.e. a configuration and its (translation and rotation) velocities..." alt="" coords="282,80,335,107"/>
+<area shape="rect" id="node6" href="$classVector.html" title="This class defines a vector in two dimension. " alt="" coords="360,80,420,107"/>
+</map>

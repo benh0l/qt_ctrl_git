@@ -1,0 +1,11 @@
+<map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
+<area shape="rect" id="node2" href="$classController.html" title="Controller is the abstract class inherited by all the implemented controllers. " alt="" coords="134,107,213,133"/>
+<area shape="rect" id="node10" href="$classQtMotionGUI.html" title="This class shows the motion of the robot. " alt="" coords="124,157,223,184"/>
+<area shape="rect" id="node3" href="$classFileCtrl.html" title="FileCtrl allows to control the robot from a file. " alt="" coords="272,56,336,83"/>
+<area shape="rect" id="node8" href="$classKbdCtrl.html" title="KbdCtrl allows to control the robot with the keyboard. " alt="" coords="271,107,337,133"/>
+<area shape="rect" id="node9" href="$classNoCtrl.html" title="Default controller, which does not move. " alt="" coords="274,157,334,184"/>
+<area shape="rect" id="node4" href="$classTrackingCtrl.html" title="TrackingCtrl aims at following a trajectory with the robot. " alt="" coords="385,56,479,83"/>
+<area shape="rect" id="node5" href="$classAnalyticCtrl.html" title="AnalyticCtrl compute the trajectory&#39;s velocities using analytic geometry and mecanic. " alt="" coords="527,5,617,32"/>
+<area shape="rect" id="node6" href="$classImitateCtrl.html" title="ImitateCtrl copies the trajectory&#39;s velocities. " alt="" coords="531,56,613,83"/>
+<area shape="rect" id="node7" href="$classPIDCtrl.html" title="PIDCtrl uses a PID to compute the trajectory&#39;s velocities. " alt="" coords="539,107,605,133"/>
+</map>

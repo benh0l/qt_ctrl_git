@@ -1,0 +1,7 @@
+<map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
+<area shape="rect" id="node1" href="$classControlWidget.html" title="This abstract class is inherited by all those containing a Qt widget intended to show the controller&#39;..." alt="" coords="5,56,111,83"/>
+<area shape="rect" id="node2" href="$classTeleopWidget.html" title="This class is a Qt widget which allows to control the keyboard controller. " alt="" coords="159,5,262,32"/>
+<area shape="rect" id="node3" href="$classViewCtrlWdgt.html" title="This class is a Qt widget which allows to show the controller&#39;s behaviour (current and aimed velociti..." alt="" coords="159,56,262,83"/>
+<area shape="rect" id="node6" href="$classDataWidget.html" title="This class is a Qt widget which displays the data (odometry and commands) of the controller. " alt="" coords="165,107,256,133"/>
+<area shape="rect" id="node7" href="$classDubinsWidget.html" title="DubinsWidget" alt="" coords="159,157,263,184"/>
+</map>

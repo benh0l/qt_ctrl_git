@@ -1,0 +1,39 @@
+<map id="object.hpp" name="object.hpp">
+<area shape="rect" id="node2" href="$vector_8hpp.html" title="2D vector class. " alt="" coords="1027,80,1110,107"/>
+<area shape="rect" id="node23" href="$file_8cpp.html" title="File controller (teleoperation) class. " alt="" coords="994,528,1058,555"/>
+<area shape="rect" id="node38" href="$object_8cpp.html" title="Static mathematical methods. " alt="" coords="1250,80,1333,107"/>
+<area shape="rect" id="node3" href="$point_8hpp.html" title="2D point class. " alt="" coords="998,155,1073,181"/>
+<area shape="rect" id="node4" href="$configuration_8hpp.html" title="Configuration class, i.e. oriented point in two dimension. " alt="" coords="941,229,1063,256"/>
+<area shape="rect" id="node5" href="$Dubins_8hpp.html" title="Shortest path between two configurations. " alt="" coords="958,304,1046,331"/>
+<area shape="rect" id="node11" href="$state_8hpp.html" title="State class, i.e. configuration and velocities. " alt="" coords="665,304,741,331"/>
+<area shape="rect" id="node6" href="$Dubins_8cpp.html" title="Shortest path between two configurations. " alt="" coords="1087,379,1175,405"/>
+<area shape="rect" id="node7" href="$consoleDubins_8cpp.html" title="consoleDubins.cpp" alt="" coords="783,379,917,405"/>
+<area shape="rect" id="node8" href="$Dubinscheck_8hpp.html" title="Qt based GUI to check Dubins&#39; path computation. " alt="" coords="941,379,1063,405"/>
+<area shape="rect" id="node9" href="$Dubinscheck_8cpp.html" title="Qt based GUI to check Dubins&#39; path computation. " alt="" coords="1007,453,1130,480"/>
+<area shape="rect" id="node10" href="$moc__Dubinscheck_8cpp.html" title="moc_Dubinscheck.cpp" alt="" coords="829,453,983,480"/>
+<area shape="rect" id="node12" href="$controller_8hpp.html" title="Controller abstract class. " alt="" coords="277,379,377,405"/>
+<area shape="rect" id="node14" href="$track_8hpp.html" title="Path following controller abstract class. " alt="" coords="708,528,784,555"/>
+<area shape="rect" id="node36" href="$overview_8hpp.html" title="Qt based overview of the robot&#39;s motion. " alt="" coords="610,379,709,405"/>
+<area shape="rect" id="node13" href="$file_8hpp.html" title="File controller (teleoperation) class. " alt="" coords="522,453,586,480"/>
+<area shape="rect" id="node24" href="$keyboard_8hpp.html" title="Keyboard controller (teleoperation) class. " alt="" coords="5,528,105,555"/>
+<area shape="rect" id="node27" href="$ctrlWdgt_8hpp.html" title="Qt based control widget for qt_ctrl. " alt="" coords="215,453,311,480"/>
+<area shape="rect" id="node31" href="$ROS__node_8hpp.html" title="ROS communication node. " alt="" coords="336,453,447,480"/>
+<area shape="rect" id="node35" href="$controller_8cpp.html" title="Controller abstract class. " alt="" coords="91,453,191,480"/>
+<area shape="rect" id="node17" href="$window_8cpp.html" title="Qt based GUI for qt_ctrl. " alt="" coords="501,677,591,704"/>
+<area shape="rect" id="node15" href="$analytic_8hpp.html" title="Path following controller class, with an analytic approach. " alt="" coords="905,603,997,629"/>
+<area shape="rect" id="node18" href="$imitate_8hpp.html" title="Path following controller class, copying the velocities. " alt="" coords="600,603,687,629"/>
+<area shape="rect" id="node20" href="$PID_8hpp.html" title="Path following controller class, using a PID. " alt="" coords="711,603,781,629"/>
+<area shape="rect" id="node22" href="$track_8cpp.html" title="Path following controller abstract class. " alt="" coords="805,603,881,629"/>
+<area shape="rect" id="node16" href="$analytic_8cpp.html" title="Path following controller class, with an analytic approach. " alt="" coords="905,677,997,704"/>
+<area shape="rect" id="node19" href="$imitate_8cpp.html" title="Path following controller class, copying the velocities. " alt="" coords="616,677,703,704"/>
+<area shape="rect" id="node21" href="$PID_8cpp.html" title="Path following controller class, using a PID. " alt="" coords="727,677,797,704"/>
+<area shape="rect" id="node25" href="$teleop_8hpp.html" title="Qt based teleoperation widget for qt_ctrl. " alt="" coords="59,603,142,629"/>
+<area shape="rect" id="node26" href="$teleop_8cpp.html" title="Qt based teleoperation widget for qt_ctrl. " alt="" coords="59,677,142,704"/>
+<area shape="rect" id="node28" href="$viewCtrl_8hpp.html" title="Qt control widget showing current and aimed velocities. " alt="" coords="131,528,225,555"/>
+<area shape="rect" id="node30" href="$window_8hpp.html" title="Qt based GUI for qt_ctrl package. " alt="" coords="322,603,413,629"/>
+<area shape="rect" id="node29" href="$viewCtrl_8cpp.html" title="Qt control widget showing current and aimed velocities. " alt="" coords="167,603,261,629"/>
+<area shape="rect" id="node32" href="$display_8hpp.html" title="Qt widget displaying data for qt_ctrl. " alt="" coords="437,528,525,555"/>
+<area shape="rect" id="node34" href="$ROS__node_8cpp.html" title="ROS communication central! " alt="" coords="301,528,412,555"/>
+<area shape="rect" id="node33" href="$display_8cpp.html" title="Qt widget displaying data for qt_ctrl. " alt="" coords="437,603,525,629"/>
+<area shape="rect" id="node37" href="$overview_8cpp.html" title="Qt based overview of the robot&#39;s motion. " alt="" coords="610,453,709,480"/>
+</map>
