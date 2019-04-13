@@ -1,19 +1,3 @@
-/**
- * @file /src/gui/overview.cpp
- *
- * @brief Qt based overview of the robot's motion.
- *
- * @date November 2018
- **/
-
-#include <gui/overview.hpp>
-#include <QGraphicsView>
-#include <QVBoxLayout>
-
-
-
-
-
 # include <cstdlib>
 # include <iostream>
 # include <iomanip>
@@ -23,29 +7,11 @@
 
 using namespace std;
 
-# include <gui/hermite.hpp>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+# include "hermite.hpp"
 
 //****************************************************************************80
 
-void QtMotionGUI::dif_deriv ( int nd, double xd[], double yd[], int *ndp, double xdp[], 
+void dif_deriv ( int nd, double xd[], double yd[], int *ndp, double xdp[], 
   double ydp[] )
 
 //****************************************************************************80
@@ -134,7 +100,7 @@ void QtMotionGUI::dif_deriv ( int nd, double xd[], double yd[], int *ndp, double
 }
 //****************************************************************************80
 
-void QtMotionGUI::dif_shift_x ( int nd, double xd[], double yd[], double xv )
+void dif_shift_x ( int nd, double xd[], double yd[], double xv )
 
 //****************************************************************************80
 //
@@ -216,7 +182,7 @@ void QtMotionGUI::dif_shift_x ( int nd, double xd[], double yd[], double xv )
 }
 //****************************************************************************80
 
-void QtMotionGUI::dif_shift_zero ( int nd, double xd[], double yd[] )
+void dif_shift_zero ( int nd, double xd[], double yd[] )
 
 //****************************************************************************80
 //
@@ -280,7 +246,7 @@ void QtMotionGUI::dif_shift_zero ( int nd, double xd[], double yd[] )
 }
 //****************************************************************************80
 
-void QtMotionGUI::dif_to_r8poly ( int nd, double xd[], double yd[], double c[] )
+void dif_to_r8poly ( int nd, double xd[], double yd[], double c[] )
 
 //****************************************************************************80
 //
@@ -344,7 +310,7 @@ void QtMotionGUI::dif_to_r8poly ( int nd, double xd[], double yd[], double c[] )
 }
 //****************************************************************************80
 
-double *QtMotionGUI::dif_vals ( int nd, double xd[], double yd[], int nv, double xv[] )
+double *dif_vals ( int nd, double xd[], double yd[], int nv, double xv[] )
 
 //****************************************************************************80
 //
@@ -406,7 +372,7 @@ double *QtMotionGUI::dif_vals ( int nd, double xd[], double yd[], int nv, double
 }
 //****************************************************************************80
 
-double QtMotionGUI::hermite_basis_0 ( int n, double x[], int i, double xv )
+double hermite_basis_0 ( int n, double x[], int i, double xv )
 
 //****************************************************************************80
 //
@@ -517,7 +483,7 @@ double QtMotionGUI::hermite_basis_0 ( int n, double x[], int i, double xv )
 }
 //****************************************************************************80
 
-double QtMotionGUI::hermite_basis_1 ( int n, double x[], int i, double xv )
+double hermite_basis_1 ( int n, double x[], int i, double xv )
 
 //****************************************************************************80
 //
@@ -600,7 +566,7 @@ double QtMotionGUI::hermite_basis_1 ( int n, double x[], int i, double xv )
 }
 //****************************************************************************80
 
-void QtMotionGUI::hermite_demo ( int n, double x[], double y[], double yp[] )
+void hermite_demo ( int n, double x[], double y[], double yp[] )
 
 //****************************************************************************80
 //
@@ -744,7 +710,7 @@ void QtMotionGUI::hermite_demo ( int n, double x[], double y[], double yp[] )
 }
 //****************************************************************************80
 
-void QtMotionGUI::hermite_interpolant ( int n, double x[], double y[], double yp[], 
+void hermite_interpolant ( int n, double x[], double y[], double yp[], 
   double xd[], double yd[], double xdp[], double ydp[] )
 
 //****************************************************************************80
@@ -840,7 +806,7 @@ void QtMotionGUI::hermite_interpolant ( int n, double x[], double y[], double yp
 }
 //****************************************************************************80
 
-double *QtMotionGUI::hermite_interpolant_rule ( int n, double a, double b, double x[] )
+double *hermite_interpolant_rule ( int n, double a, double b, double x[] )
 
 //****************************************************************************80
 //
@@ -943,7 +909,7 @@ double *QtMotionGUI::hermite_interpolant_rule ( int n, double a, double b, doubl
 }
 //****************************************************************************80
 
-void QtMotionGUI::hermite_interpolant_value ( int nd, double xd[], double yd[], double xdp[], 
+void hermite_interpolant_value ( int nd, double xd[], double yd[], double xdp[], 
   double ydp[], int nv, double xv[], double yv[], double yvp[] )
 
 //****************************************************************************80
@@ -1019,7 +985,7 @@ void QtMotionGUI::hermite_interpolant_value ( int nd, double xd[], double yd[], 
 }
 //****************************************************************************80
 
-double QtMotionGUI::r8_abs ( double x )
+double r8_abs ( double x )
 
 //****************************************************************************80
 //
@@ -1060,7 +1026,7 @@ double QtMotionGUI::r8_abs ( double x )
 }
 //****************************************************************************80
 
-double QtMotionGUI::r8_max ( double x, double y )
+double r8_max ( double x, double y )
 
 //****************************************************************************80
 //
@@ -1101,7 +1067,7 @@ double QtMotionGUI::r8_max ( double x, double y )
 }
 //****************************************************************************80
 
-double QtMotionGUI::r8poly_ant_val ( int n, double poly_cof[], double xval )
+double r8poly_ant_val ( int n, double poly_cof[], double xval )
 
 //****************************************************************************80
 //
@@ -1153,7 +1119,7 @@ double QtMotionGUI::r8poly_ant_val ( int n, double poly_cof[], double xval )
 }
 //****************************************************************************80
 
-int QtMotionGUI::r8poly_degree ( int na, double a[] )
+int r8poly_degree ( int na, double a[] )
 
 //****************************************************************************80
 //
@@ -1208,7 +1174,7 @@ int QtMotionGUI::r8poly_degree ( int na, double a[] )
 }
 //****************************************************************************80
 
-void QtMotionGUI::r8poly_print ( int n, double a[], string title )
+void r8poly_print ( int n, double a[], string title )
 
 //****************************************************************************80
 //
@@ -1320,7 +1286,7 @@ void QtMotionGUI::r8poly_print ( int n, double a[], string title )
 }
 //****************************************************************************80
 
-double *QtMotionGUI::r8vec_chebyshev_new ( int n, double a_first, double a_last )
+double *r8vec_chebyshev_new ( int n, double a_first, double a_last )
 
 //****************************************************************************80
 //
@@ -1392,7 +1358,7 @@ double *QtMotionGUI::r8vec_chebyshev_new ( int n, double a_first, double a_last 
 }
 //****************************************************************************80
 
-double *QtMotionGUI::r8vec_linspace_new ( int n, double a_first, double a_last )
+double *r8vec_linspace_new ( int n, double a_first, double a_last )
 
 //****************************************************************************80
 //
@@ -1447,7 +1413,7 @@ double *QtMotionGUI::r8vec_linspace_new ( int n, double a_first, double a_last )
 }
 //****************************************************************************80
 
-void QtMotionGUI::r8vec_print ( int n, double a[], string title )
+void r8vec_print ( int n, double a[], string title )
 
 //****************************************************************************80
 //
@@ -1495,7 +1461,7 @@ void QtMotionGUI::r8vec_print ( int n, double a[], string title )
 }
 //****************************************************************************80
 
-double QtMotionGUI::r8vec_product ( int n, double a[] )
+double r8vec_product ( int n, double a[] )
 
 //****************************************************************************80
 //
@@ -1541,7 +1507,7 @@ double QtMotionGUI::r8vec_product ( int n, double a[] )
 }
 //****************************************************************************80
 
-void QtMotionGUI::r8vec_uniform_01 ( int n, int *seed, double r[] )
+void r8vec_uniform_01 ( int n, int *seed, double r[] )
 
 //****************************************************************************80
 //
@@ -1639,7 +1605,7 @@ void QtMotionGUI::r8vec_uniform_01 ( int n, int *seed, double r[] )
 }
 //****************************************************************************80
 
-void QtMotionGUI::timestamp ( )
+void timestamp ( )
 
 //****************************************************************************80
 //
@@ -1684,248 +1650,3 @@ void QtMotionGUI::timestamp ( )
   return;
 # undef TIME_SIZE
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-QtMotionGUI::QtMotionGUI() : motion_window(), not_first_state(false) {
-    // Set the window's properties
-    motion_window.setWindowTitle("Robot's Motion Overview");
-    motion_window.setGeometry(200, 100, 800, 600);
-    motion_window.setVisible(false);
-    // Add the path scene in a first tab
-    motion_window.addTab(new QGraphicsView(&path_scene),
-                         "Motion's Path");
-    // Add the velocities scenes in a second tab
-    QWidget *vel_wdgt = new QWidget();
-    QLayout *vel_layout = new QVBoxLayout(vel_wdgt);
-    vel_layout->addWidget( new QGraphicsView(&trans_vel_scene) );
-    vel_layout->addWidget( new QGraphicsView(&rot_vel_scene) );
-    motion_window.addTab(vel_wdgt, "Motion's Velocities");
-} // end of QtMotionGUI::QtMotionGUI() -------------------------------
-
-void QtMotionGUI::addTrajectory(const std::list<State*>& trajectory) {
-    static const Qt::GlobalColor traj_color = Qt::green;
-    trajectory_nb_pts = 0;
-    // adds each state of the trajectory, using traj_color
-    for(std::list<State*>::const_iterator it = trajectory.begin();
-        it != trajectory.end(); it++) {
-        addState(**it, traj_color);
-        trajectory_nb_pts++;
-    } // end of for (each state of the trajectory)
-    not_first_state = false;
-    average_nb_pts = 0;
-    average_delay_count = 0;
-    //trajectory_states = trajectory;
-
-    //trajectory_end = trajectory;
-    trajectory_iterator = trajectory.begin();
-
-/*	
-	std::cout << "debut"<< std::endl;
- double X[3] = {1.2, 5.7, 9.4}; // Abscisses des points d'interpolation
-    double Y[3] = {7.1, 4.8, 5.9}; // Leurs ordonnées
-    double y(0);
-     
-     
-     
-    for (int i = 0; i < 3; i++)
-    {
-        y = lagrange(3,X,Y,X[i]);
-        std::cout << "Y(" << X[i] << ") = " << y << "\n";
-    }*/
-
-
-int n = 6;
-  double x[6] = { 0.0, 1.0,  2.0 , 5.6, 8.6, 14.0};
-  double y[6] = { 1.0, 6.0, 17.0 , 25.0, 12.0, 35.2};
-  double yp[6] = { 2.0, 8.0, 14.0, 2.0, -5.0, 6.3 };
-
-  std::cout << "\n";
-  std::cout << "TEST01\n";
-  std::cout << "  HERMITE computes the Hermite interpolant to data.\n";
-  std::cout << "  Here, f(x) = 1 + 2x + 3x^2.\n";
-
-  hermite_demo ( n, x, y, yp );
-
-} // end of void QtMotionGUI::addTrajectory(const std::list<State*>&)-
-
-double QtMotionGUI::lagrange(const int n, const double* X,const double*  Y, double x)
-{
-    double y, yy;
-    int i,j;
-     
-    y = 0;
-     
-    for (j = 0; j < n; j++) // construction du polynôme de Lagrage valant Y[j] en X[j] et nul aux autre X[i]
-    {
-        if(Y[j] != 0.0) // Inutile de le calculer si Y[j] est nul.
-        {
-            yy = Y[j];
-            for(i = 0; i<n; i++)
-            {
-                if (i != j)
-                {
-                    yy *= (x-X[i])/(X[j]- X[i]);
-                }
-            }
-        }
-        y += yy; // On fait successivement la somme des polynômes précédents.
-         
-    }
-    return y;
-}
-
-
-void QtMotionGUI::addState(const State& state,
-                           const Qt::GlobalColor motion_color) {
-    static const int abscIdx = 0, ordoIdx = abscIdx + 1,
-            timeIdx = ordoIdx + 1, tranIdx = timeIdx + 1,  // was previously
-            rotaIdx = tranIdx + 1, nmbrIdx = rotaIdx + 1;  // an enum
-    if (not_first_state) {
-        // Setting the color
-        const QPen motion_pen = QColor(motion_color);
-        // Scalling factors
-        static const double factors[nmbrIdx]
-                = {50, 50, 25, 100, 300 / M_PI};
-        // extract the data from the state
-        const Config old_q = last_state.configuration(),
-                q = state.configuration();
-        const Point  old_P = old_q.position(), P = q.position();
-        // add a new line to the path (and redraw it)
-        path_scene.addLine(factors[abscIdx] * old_P.xCoord(),
-                           - factors[ordoIdx] * old_P.yCoord(),
-                           factors[abscIdx] * P.xCoord(),
-                           - factors[ordoIdx] * P.yCoord(), motion_pen);
-        // add a new line to the translation velocity profile
-        trans_vel_scene.addLine(factors[timeIdx] * last_state.date(),
-                                - factors[tranIdx]
-                                * last_state.translationVelocity(),
-                                factors[timeIdx] * state.date(),
-                                - factors[tranIdx]
-                                * state.translationVelocity(),
-                                motion_pen);
-        // add a new line to the rotation velocity profile
-        rot_vel_scene.addLine(factors[timeIdx] * last_state.date(),
-                              - factors[rotaIdx]
-                              * last_state.rotationVelocity(),
-                              factors[timeIdx] * state.date(),
-                              - factors[rotaIdx]
-                              * state.rotationVelocity(), motion_pen);
-    } // end of if (not_first_state)
-    // memorize the last state for future drawing
-    not_first_state = true;
-    last_state = state;
-} // end of void QtMotionGUI::addState(double[]) ---------------------
-
-
-void QtMotionGUI::addStateAverage(const State& state, const Qt::GlobalColor motion_color){
-   
- static const int abscIdx = 0, ordoIdx = abscIdx + 1,
-            timeIdx = ordoIdx + 1, tranIdx = timeIdx + 1,  // was previously
-            rotaIdx = tranIdx + 1, nmbrIdx = rotaIdx + 1;  // an enum
-
-
-
-
-        const State ti = **trajectory_iterator;
-
-        // extract the data from the state
-        const Config q = state.configuration(), qTI = ti.configuration();
-        const Point P = q.position(), PTI = qTI.position();
-
-	const float averageX = (PTI.xCoord() +P.xCoord())/2;
-	const float averageY = (PTI.yCoord() +P.yCoord())/2;
-	//std::cout << "lol"<<averageX << " " << averageY << std::endl;
-
-    if (average_not_first_state && average_nb_pts < trajectory_nb_pts-1) {
-        // Setting the color
-        const QPen motion_pen = QColor(motion_color);
-        // Scalling factors
-        static const double factors[nmbrIdx]
-                = {50, 50, 25, 100, 300 / M_PI};
-
-
-       /* const State ti = **trajectory_iterator;
-
-        // extract the data from the state
-        const Config old_q = average_last_state.configuration(),
-                q = state.configuration(), qTI = ti.configuration();
-        const Point  old_P = old_q.position(), P = q.position(), PTI = qTI.position();*/
-
-	
-        // add a new line to the path (and redraw it)
-       // path_scene.addLine(factors[abscIdx] * old_P.xCoord(),
-         //                  - factors[ordoIdx] * old_P.yCoord(),
-                          
-        path_scene.addLine(factors[abscIdx] * average_lastX,
-                           - factors[ordoIdx] * average_lastY,
-                             factors[abscIdx] * averageX,
-                           - factors[ordoIdx] * averageY, motion_pen);
-        // add a new line to the translation velocity profile
-        trans_vel_scene.addLine(factors[timeIdx] * last_state.date(),
-                                - factors[tranIdx]
-                                * last_state.translationVelocity(),
-                                factors[timeIdx] * state.date(),
-                                - factors[tranIdx]
-                                * state.translationVelocity(),
-                                motion_pen);
-        // add a new line to the rotation velocity profile
-        rot_vel_scene.addLine(factors[timeIdx] * last_state.date(),
-                              - factors[rotaIdx]
-                              * last_state.rotationVelocity(),
-                              factors[timeIdx] * state.date(),
-                              - factors[rotaIdx]
-                              * state.rotationVelocity(), motion_pen);
-    } // end of if (not_first_state)
-    // memorize the last state for future drawing
-    average_not_first_state = true;
-    //average_last_state = state;
-    average_lastX = averageX;
-    average_lastY = averageY;
-
-//if(trajectory_iterator != trajectory_states.end()){
-    if(average_nb_pts < trajectory_nb_pts-1){
-     average_delay_count++;
-     if(average_delay_count ==5){
-        average_delay_count = 0;
-     }else{
-     trajectory_iterator++;
-     average_nb_pts ++;
-
-	}
-   }
-
-
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
