@@ -90,8 +90,6 @@ void DataWidget::updateState(const State& state) {
      state.translationVelocity(), state.rotationVelocity()};
   setLabels(tOdom, nbOdoms, data);
   motion_GUI.addState(state);
-
-  motion_GUI.addStateAverage(state);
   if ( outputOK() ) {
     int idx;
     for(idx = 0; idx < nbOdoms; idx++)
