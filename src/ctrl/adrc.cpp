@@ -1,5 +1,5 @@
 /**
- * @file  src/ctrl/abt.cpp
+ * @file  src/ctrl/adrc.cpp
  *
  * @brief Path following controller class, copying the velocities.
  *
@@ -7,11 +7,11 @@
  **/
 
 
-#include <ctrl/abt.hpp>
+#include <ctrl/adrc.hpp>
 
 
 // Cf Controller::chooseVelocities(...)
-void ABTCtrl::chooseVelocities(double& trans_vel, double& rot_vel,
+void ADRCCtrl::chooseVelocities(double& trans_vel, double& rot_vel,
 				   std::ostringstream& log_str) {
   searchGoal();  // updates the goal to be after the robot's date
   // gets the goal's velocities

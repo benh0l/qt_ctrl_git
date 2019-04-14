@@ -8,7 +8,7 @@
 
 #include <ctrl/file.hpp>
 #include <ctrl/imitate.hpp>
-#include <ctrl/abt.hpp>
+#include <ctrl/adrc.hpp>
 #include <ctrl/PID.hpp>
 #include <ctrl/analytic.hpp>
 #include <gui/teleop.hpp>
@@ -279,7 +279,7 @@ void QtCtrlGUI::buttonStartStop() {
 	      static const int nb_btn = 4;
 	      QPushButton select_btn[nb_btn]; 
 	      static const char* name_btn[nb_btn]
-		= {"Analytical", "PID", "Imitate", "ABT"};
+		= {"Analytical", "PID", "Imitate", "ADRC"};
 	      int idx; 
 	      for(idx = 0; idx < nb_btn; idx++) {
 		select_btn[idx].setText( tr(name_btn[idx]) );
@@ -323,7 +323,7 @@ void QtCtrlGUI::buttonStartStop() {
 		: idx == 2 ? (TrackingCtrl*) new ImitateCtrl
 		( motion_model, time_step, 
 		  inputFile.toStdString().c_str(), start)
-		: (TrackingCtrl*) new ABTCtrl
+		: (TrackingCtrl*) new ADRCCtrl
 		( motion_model, time_step,
 		  inputFile.toStdString().c_str(), start );
 	      controller = new_ctrl; // this is Controller*

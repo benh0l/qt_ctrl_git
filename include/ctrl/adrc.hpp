@@ -1,5 +1,5 @@
 /**
- ** @file  include/ctrl/abt.hpp
+ ** @file  include/ctrl/adrc.hpp
  **
  ** @brief Path following controller class, copying the velocities.
  **
@@ -7,8 +7,8 @@
  **/
 
 
-#ifndef QTCTRL_ABT_CTRL
-#define QTCTRL_ABT_CTRL
+#ifndef QTCTRL_ADRC_CTRL
+#define QTCTRL_ADRC_CTRL
 
 #include <ctrl/track.hpp>
 
@@ -20,7 +20,7 @@
  **
  ** @since 0.3.1
  */
-class ABTCtrl : public TrackingCtrl {
+class ADRCCtrl : public TrackingCtrl {
 public:
   /** @brief The constructor needs a motion model, a file name
    **        giving the path to track and an initial configuration.
@@ -35,12 +35,12 @@ public:
    ** 
    ** @see TrackingCtrl::TrackingCtrl
    **/
-  ABTCtrl(const MotionModel& model, const double& ts,
+  ADRCCtrl(const MotionModel& model, const double& ts,
 	      const char* input_file_name, const Config& init_config)
     : TrackingCtrl(model, ts, input_file_name, init_config) {}
   
   /// @brief The destructor needs to be explicitely redefined.
-  virtual ~ABTCtrl() {}
+  virtual ~ADRCCtrl() {}
   
   // Cf Controller::choose_velocities(double&, double&, ...)
   virtual void chooseVelocities(double& trans_vel, double& rot_vel,
@@ -48,4 +48,4 @@ public:
   
 }; // end of class ImitateCtrl
 
-#endif // QTCTRL_ABT_CTRL
+#endif // QTCTRL_ADRC_CTRL
