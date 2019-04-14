@@ -8,6 +8,7 @@
 
 #include <ctrl/file.hpp>
 #include <ctrl/imitate.hpp>
+#include <ctrl/abt.hpp>
 #include <ctrl/PID.hpp>
 #include <ctrl/analytic.hpp>
 #include <gui/teleop.hpp>
@@ -275,10 +276,10 @@ void QtCtrlGUI::buttonStartStop() {
 	      QDialogButtonBox select_wdgt(Qt::Horizontal);
 	      QVBoxLayout dialog_layout(&select_dialog);
 	      dialog_layout.addWidget(&select_wdgt); 
-	      static const int nb_btn = 3;
+	      static const int nb_btn = 4;
 	      QPushButton select_btn[nb_btn]; 
 	      static const char* name_btn[nb_btn]
-		= {"Analytical", "PID", "Imitate"};
+		= {"Analytical", "PID", "Imitate", "ABT"};
 	      int idx; 
 	      for(idx = 0; idx < nb_btn; idx++) {
 		select_btn[idx].setText( tr(name_btn[idx]) );
@@ -319,7 +320,10 @@ void QtCtrlGUI::buttonStartStop() {
 		: idx == 1 ? (TrackingCtrl*) new PIDCtrl
 		( motion_model, time_step, 
 		  inputFile.toStdString().c_str(), start, coef )
-		: (TrackingCtrl*) new ImitateCtrl
+		: idx == 2 ? (TrackingCtrl*) new ImitateCtrl
+		( motion_model, time_step, 
+		  inputFile.toStdString().c_str(), start)
+		: (TrackingCtrl*) new ABTCtrl
 		( motion_model, time_step,
 		  inputFile.toStdString().c_str(), start );
 	      controller = new_ctrl; // this is Controller*
