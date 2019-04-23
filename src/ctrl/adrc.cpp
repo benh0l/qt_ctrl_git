@@ -13,15 +13,16 @@
 // Cf Controller::chooseVelocities(...)
 void ADRCCtrl::chooseVelocities(double& trans_vel, double& rot_vel,
 				   std::ostringstream& log_str) {
-  searchGoal();  // updates the goal to be after the robot's date
+  //searchGoal(0.05);  // updates the goal to be after the robot's date
+searchGoal(0.5);  // updates the goal to be after the robot's date
   // gets the goal's velocities
-  //moving_velocity = (*goal)->translationVelocity(); 
+  moving_velocity = (*goal)->translationVelocity(); 
   //turning_velocity = (*goal)->rotationVelocity(); 
 
 
 
-  moving_velocity +=0.1; 
-  turning_velocity += 0.1; 
+  //moving_velocity +=0.1; 
+ // turning_velocity += 0.1; 
 
 double xi = state.configuration().position().xCoord();
 double yi = state.configuration().position().yCoord();
@@ -54,7 +55,45 @@ double cx3 = (xiplus1Prim + xiPrim - 2 * six)/(delta_t * delta_t);
 double cy3 = (yiplus1Prim + yiPrim - 2 * siy)/(delta_t * delta_t);
 
 
+double xd0 = cx3 * pow(0.1 * delta_t, 3) + cx2 * pow(0.1 * delta_t, 2) + cx1 * 0.1 + cx0;
+double yd0 = cy3 * pow(0.1 * delta_t, 3) + cy2 * pow(0.1 * delta_t, 2) + cy1 * 0.1 + cy0;
 
+double xd1 = cx3 * pow(0.49 * delta_t, 3) + cx2 * pow(0.49 * delta_t, 2) + cx1 * 0.49 + cx0;
+double yd1 = cy3 * pow(0.49 * delta_t, 3) + cy2 * pow(0.49 * delta_t, 2) + cy1 * 0.49 + cy0;
+
+double xd2 = cx3 * pow(0.5 * delta_t, 3) + cx2 * pow(0.5 * delta_t, 2) + cx1 * 0.5 + cx0;
+double yd2 = cy3 * pow(0.5 * delta_t, 3) + cy2 * pow(0.5 * delta_t, 2) + cy1 * 0.5 + cy0;
+
+double xd3 = cx3 * pow(0.51 * delta_t, 3) + cx2 * pow(0.51 * delta_t, 2) + cx1 * 0.51 + cx0;
+double yd3 = cy3 * pow(0.51 * delta_t, 3) + cy2 * pow(0.51 * delta_t, 2) + cy1 * 0.51 + cy0;
+
+double theta1_2 =  atan((xd2-xd1) / (yd2-yd1));
+double theta2_3 =   atan((xd3-xd2) / (yd3-yd2));
+
+double theta0 =  atan((xd0-xi) / (yd0-yi));
+
+ //Que faire en cas de div par zero?
+
+//double omega = (theta2_3 - theta1_2) / 0.01;
+//double omega = (theta1_2 - state.rotationVelocity()) / 0.5;
+double omega = (theta0 - state.rotationVelocity()) / 0.1;
+
+std::cout <<  theta1_2 << " et "<<  theta2_3  << " contre "<< state.rotationVelocity()  << "\n";
+//std::cout << state.rotationVelocity() << " puis "<< omega << " puis "<< (*goal)->rotationVelocity()<< "\n";
+
+//std::cout << (*goal)->rotationVelocity()*100/(*goal)->translationVelocity() << "\n";
+
+
+//std::cout <<  acos(((xd2 - xd1)/0.01)/(*goal)->translationVelocity()) << "  " << asin(((yd2 - yd1)/0.01)/(*goal)->translationVelocity())<< "  " <<(*goal)->translationVelocity() << "\n";
+
+std::cout << xi << " puis "<< xd1 << " puis "<< xiplus1<< "\n";
+
+//double vitesse = sqrt(pow(xiplus1 - xi, 2)+ pow(yiplus1 - yi, 2));
+
+//std::cout << delta_t << ": "<< vitesse << " au lieu de "<<(*goal)->translationVelocity()<< "\n";
+
+//moving_velocity = vitesse;
+turning_velocity = omega;
   //moving_velocity = 2.; 
   //turning_velocity = 3.; 
   // updates the parameters and send the update signal
