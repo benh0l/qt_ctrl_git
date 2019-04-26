@@ -26,15 +26,18 @@ searchGoal(0.2);  // updates the goal to be after the robot's date
 
 double xi = state.configuration().position().xCoord();
 double yi = state.configuration().position().yCoord();
+double thetai = state.configuration().orientation();
+double omegai = state.rotationVelocity();
 
 double xiplus1 = (*goal)->configuration().position().xCoord();
-double yiplus1 = (*goal)->configuration().position().yCoord();
+double yiplus1 =  (*goal)->configuration().position().yCoord();
+double thetaiplus1 = (*goal)->configuration().orientation();
 
-double xiPrim = state.translationVelocity() * cos(state.rotationVelocity());
-double yiPrim = state.translationVelocity() * sin(state.rotationVelocity());
+double xiPrim = state.translationVelocity() * cos(thetai);
+double yiPrim = state.translationVelocity() * sin(thetai);
 
-double xiplus1Prim = (*goal)->translationVelocity() * cos((*goal)->rotationVelocity());
-double yiplus1Prim = (*goal)->translationVelocity() * sin((*goal)->rotationVelocity());
+double xiplus1Prim = (*goal)->translationVelocity() * cos(thetaiplus1);
+double yiplus1Prim = (*goal)->translationVelocity() * sin(thetaiplus1);
 
 double ti = state.date();
 double tiplus1 = (*goal)->date();
@@ -109,9 +112,10 @@ double omega = (theta2_3 - theta1_2) / 0.01;
 //double omega = (theta1_2 - state.rotationVelocity()) / 0.5;
 //double omega = (theta0 - state.rotationVelocity()) / 0.1;
 
-std::cout << xdPrim  << " au lieu de "<< theta1_2  << "\n";
+//std::cout << xdPrim  << " au lieu de "<< theta1_2  << "\n";
 //std::cout << omega  << " au lieu de "<< state.rotationVelocity()  << "\n";
 
+std::cout <<  theta1_2 << " et "<<  theta2_3  << " contre "<< thetai  << "\n";
 //std::cout <<  theta1_2 << " et "<<  theta2_3  << " contre "<< state.rotationVelocity()  << "\n";
 //std::cout << state.rotationVelocity() << " puis "<< omega << " puis "<< (*goal)->rotationVelocity()<< "\n";
 
@@ -120,7 +124,7 @@ std::cout << xdPrim  << " au lieu de "<< theta1_2  << "\n";
 
 //std::cout <<  acos(((xd2 - xd1)/0.01)/(*goal)->translationVelocity()) << "  " << asin(((yd2 - yd1)/0.01)/(*goal)->translationVelocity())<< "  " <<(*goal)->translationVelocity() << "\n";
 
-//std::cout << xi << " puis "<< xd1 << " puis "<< xiplus1<< "\n";
+std::cout << xi << " puis "<< xd1 << " puis "<< xiplus1<< "\n";
 
 //double vitesse = sqrt(pow(xiplus1 - xi, 2)+ pow(yiplus1 - yi, 2));
 
