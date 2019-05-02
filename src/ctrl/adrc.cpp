@@ -164,8 +164,112 @@ double xdtStar, ydtStar;
 double xPrim_dStar, yPrim_dStar;
 double f_tStar, fPrim_tStar;
 double tStarMoinstA;
+
+
+bool trouvePlus = false, trouveMoins = false, trouveEgal = false;
+double valeur;
+double plus, moins, egal;
+int i = 0;
+double ecart = 0.1;
+int essais = 0;
+
+while(!trouveEgal && (!trouveMoins || !trouvePlus)){
+
+tStar = (*pointA).date() + ecart * delta_t * i;
+tStarMoinstA = tStar-tA;
+
+xdtStar = cx3 * pow(tStarMoinstA, 3) + cx2 * pow(tStarMoinstA, 2) + cx1 * tStarMoinstA + cx0;
+ydtStar = cy3 * pow(tStarMoinstA, 3) + cy2 * pow(tStarMoinstA, 2) + cy1 * tStarMoinstA + cy0;
+
+xPrim_dStar = 3*cx3*pow(tStarMoinstA, 2) + 2*cx2*tStarMoinstA + cx1*tStar;
+yPrim_dStar = 3*cy3*pow(tStarMoinstA, 2) + 2*cy2*tStarMoinstA + cy1*tStar;
+
+f_tStar = (yPrim_dStar*(yR - ydtStar)) + (xPrim_dStar*(xR - xdtStar));
+
+if(f_tStar == 0){
+	egal = tStar;
+	trouveEgal == true;
+}else{
+	if(f_tStar < 0){
+		moins = tStar;
+		trouveMoins = true;
+	}else{
+		plus = tStar;
+		trouvePlus = true;
+
+	}
+}
+
+tStar = (*pointB).date() - ecart * delta_t * i;
+tStarMoinstA = tStar-tA;
+
+xdtStar = cx3 * pow(tStarMoinstA, 3) + cx2 * pow(tStarMoinstA, 2) + cx1 * tStarMoinstA + cx0;
+ydtStar = cy3 * pow(tStarMoinstA, 3) + cy2 * pow(tStarMoinstA, 2) + cy1 * tStarMoinstA + cy0;
+
+xPrim_dStar = 3*cx3*pow(tStarMoinstA, 2) + 2*cx2*tStarMoinstA + cx1*tStar;
+yPrim_dStar = 3*cy3*pow(tStarMoinstA, 2) + 2*cy2*tStarMoinstA + cy1*tStar;
+
+f_tStar = (yPrim_dStar*(yR - ydtStar)) + (xPrim_dStar*(xR - xdtStar));
+
+if(f_tStar == 0){
+	egal = tStar;
+	trouveEgal == true;
+}else{
+	if(f_tStar < 0){
+		moins = tStar;
+		trouveMoins = true;
+	}else{
+		plus = tStar;
+		trouvePlus = true;
+
+	}
+}
+
+if(ecart * i > 0.5){
+	i = 1;
+	ecart = ecart / 3;
+	essais++;
+	if(essais > 5){
+		trouveEgal = true;
+		std::cout << " Abandon "<< "\n";
+	}
+}else{
+	i++;
+} 
+std::cout << " Un "<< f_tStar<< " "<< trouvePlus<< " "<<trouveMoins<< "  "<<ecart * i<<"\n";
+}
+
+while(!trouveEgal && (abs(moins - plus)>0.001)){
+
+tStar = (plus + moins)/2;
+tStarMoinstA = tStar-tA;
+
+xdtStar = cx3 * pow(tStarMoinstA, 3) + cx2 * pow(tStarMoinstA, 2) + cx1 * tStarMoinstA + cx0;
+ydtStar = cy3 * pow(tStarMoinstA, 3) + cy2 * pow(tStarMoinstA, 2) + cy1 * tStarMoinstA + cy0;
+
+xPrim_dStar = 3*cx3*pow(tStarMoinstA, 2) + 2*cx2*tStarMoinstA + cx1*tStar;
+yPrim_dStar = 3*cy3*pow(tStarMoinstA, 2) + 2*cy2*tStarMoinstA + cy1*tStar;
+
+f_tStar = (yPrim_dStar*(yR - ydtStar)) + (xPrim_dStar*(xR - xdtStar));
+
+if(f_tStar == 0){
+	egal = tStar;
+	trouveEgal == true;
+}else{
+	if(f_tStar < 0){
+		moins = tStar;
+	}else{
+		plus = tStar;
+
+	}
+}
+std::cout << " Deux "<< f_tStar<< "\n";
+}
+
+
+
 //std::cout << tStar  << " -----------------------\n";
-for (int i = 0; i < 100; i++){
+/*for (int i = 0; i < 100; i++){
 
 tStarMoinstA = tStar-tA;
 
@@ -186,7 +290,7 @@ fPrim_tStar = ((6*cy3*tStarMoinstA + 2*cy2)*(yR - ydtStar))
 tStar = tStar - (f_tStar / fPrim_tStar);
  //std::cout << tStar  << " f "<< f_tStar << " f'" << fPrim_tStar<<"\n";
 }
-
+*/
 
 //calcul de Q
 
@@ -196,14 +300,18 @@ tStar = tStar - (f_tStar / fPrim_tStar);
 double xQ = xdtStar + cos (thetaR);
 double yQ = ydtStar + sin (thetaR);
 
-double vx = xQ - xR;
-double vy = yQ - yR;
+//double vx = xQ - xR;
+//double vy = yQ - yR;
+double vx = xdtStar - xQ;
+double vy = ydtStar - yQ;
 //xQ = xdtStar - (yR - ydtStar);
 //yQ = ydtStar + (xR - xdtStar);
 
 //normalisation?
-std::cout <<  sqrt(pow(xQ - xR, 2)+ pow(yQ - yR, 2))<<"\n";
-double a = 2;
+//std::cout <<  sqrt(pow(xQ - xR, 2)+ pow(yQ - yR, 2))<<"\n";
+//std::cout << vx <<" " << vy<< "\n";
+
+/*double a = 2;
 double b = 2*vx + 2 *vy;
 double c = vx * vx + vy * vy - 1;
 
@@ -232,20 +340,22 @@ double solution1 = 0, solution2 = 0;
        // std::cout<<"les racines sont "<<solution3<<" et "<<solution2;
     }
        
+*/
+double lambda = sqrt(1/(vx *vx + vy*vy));
 
-if(solution1 * vx *vx + solution1*vy * vy > 0){
+if(lambda * vx *vx + lambda*vy * vy > 0){
 
-xQ = xdtStar + solution1 * vx;
-yQ = ydtStar + solution1 * vy;
+xQ = xdtStar + lambda * vx;
+yQ = ydtStar + lambda * vy;
 }else{
-xQ = xdtStar + solution2 * vx;
-yQ = ydtStar + solution2 * vy;
+xQ = xdtStar - lambda * vx;
+yQ = ydtStar - lambda * vy;
 }
 
 
-double tQ = sqrt(pow(xQ - xR, 2)+ pow(yQ - yR, 2))/ (*pointB).translationVelocity();
+double tQ = sqrt((xQ - xR)*(xQ - xR)+ (yQ - yR)*(yQ - yR))/ (*pointB).translationVelocity();
 
-//std::cout << xR  << " , "<< yR << " // " << xdtStar  << " , "<< ydtStar << " // "<< xQ  << " , "<< yQ << " "<< ((xR-xdtStar)*(xR-xQ )+(yR-ydtStar)*(yR-yQ ))<<"\n";
+std::cout << xR  << " , "<< yR << " // " << xdtStar  << " , "<< ydtStar << " // "<< xQ  << " , "<< yQ << " "<< ((xR-xdtStar)*(xR-xQ )+(yR-ydtStar)*(yR-yQ ))<<"\n";
 
 
 
@@ -258,7 +368,7 @@ omegaFinal =  (*pointA).rotationVelocity();
 std::cout <<omegaFinal<< " NANi?\n";
 }
 
-std::cout << xR  << " , "<< yR << " // " << xQ  << " , "<< yQ << " // "<<  tQ << "  ; "<< thetaFinal << " ; "<< omegaFinal<<"\n";
+//std::cout << xR  << " , "<< yR << " // " << xQ  << " , "<< yQ << " // "<<  tQ << "  ; "<< thetaFinal << " ; "<< omegaFinal<<"\n";
 
   //searchGoal(0.05);  // updates the goal to be after the robot's date
 //searchGoal(0.2);  // updates the goal to be after the robot's date
