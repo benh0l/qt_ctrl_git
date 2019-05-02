@@ -181,8 +181,10 @@ tStarMoinstA = tStar-tA;
 xdtStar = cx3 * pow(tStarMoinstA, 3) + cx2 * pow(tStarMoinstA, 2) + cx1 * tStarMoinstA + cx0;
 ydtStar = cy3 * pow(tStarMoinstA, 3) + cy2 * pow(tStarMoinstA, 2) + cy1 * tStarMoinstA + cy0;
 
-xPrim_dStar = 3*cx3*pow(tStarMoinstA, 2) + 2*cx2*tStarMoinstA + cx1*tStar;
-yPrim_dStar = 3*cy3*pow(tStarMoinstA, 2) + 2*cy2*tStarMoinstA + cy1*tStar;
+//xPrim_dStar = 3*cx3*pow(tStarMoinstA, 2) + 2*cx2*tStarMoinstA + cx1*tStar;
+//yPrim_dStar = 3*cy3*pow(tStarMoinstA, 2) + 2*cy2*tStarMoinstA + cy1*tStar;
+xPrim_dStar = 3*cx3*pow(tStarMoinstA, 2) + 2*cx2*tStarMoinstA + cx1;
+yPrim_dStar = 3*cy3*pow(tStarMoinstA, 2) + 2*cy2*tStarMoinstA + cy1;
 
 f_tStar = (yPrim_dStar*(yR - ydtStar)) + (xPrim_dStar*(xR - xdtStar));
 
@@ -199,6 +201,9 @@ if(f_tStar == 0){
 
 	}
 }
+//std::cout << yAPrim << " " << yPrim_dStar<< " "<< yBPrim<<"\n";
+//std::cout << yA << " " << ydtStar<< " "<< yB<<"\n";
+//std::cout << " Un "<< tStar<< " "<< f_tStar<< " "<< trouvePlus<< " "<<trouveMoins<< "  "<<ecart * i<<"\n";
 
 tStar = (*pointB).date() - ecart * delta_t * i;
 tStarMoinstA = tStar-tA;
@@ -206,14 +211,15 @@ tStarMoinstA = tStar-tA;
 xdtStar = cx3 * pow(tStarMoinstA, 3) + cx2 * pow(tStarMoinstA, 2) + cx1 * tStarMoinstA + cx0;
 ydtStar = cy3 * pow(tStarMoinstA, 3) + cy2 * pow(tStarMoinstA, 2) + cy1 * tStarMoinstA + cy0;
 
-xPrim_dStar = 3*cx3*pow(tStarMoinstA, 2) + 2*cx2*tStarMoinstA + cx1*tStar;
-yPrim_dStar = 3*cy3*pow(tStarMoinstA, 2) + 2*cy2*tStarMoinstA + cy1*tStar;
+
+xPrim_dStar = 3*cx3*pow(tStarMoinstA, 2) + 2*cx2*tStarMoinstA + cx1;
+yPrim_dStar = 3*cy3*pow(tStarMoinstA, 2) + 2*cy2*tStarMoinstA + cy1;
 
 f_tStar = (yPrim_dStar*(yR - ydtStar)) + (xPrim_dStar*(xR - xdtStar));
 
 if(f_tStar == 0){
 	egal = tStar;
-	trouveEgal == true;
+	trouveEgal = true;
 }else{
 	if(f_tStar < 0){
 		moins = tStar;
@@ -231,12 +237,12 @@ if(ecart * i > 0.5){
 	essais++;
 	if(essais > 5){
 		trouveEgal = true;
-		std::cout << " Abandon "<< "\n";
+		std::cout << " Abandon "<< f_tStar <<"\n";
 	}
 }else{
 	i++;
 } 
-std::cout << " Un "<< f_tStar<< " "<< trouvePlus<< " "<<trouveMoins<< "  "<<ecart * i<<"\n";
+//std::cout << " Un "<< tStar<< " "<< f_tStar<< " "<< trouvePlus<< " "<<trouveMoins<< "  "<<ecart * i<<"\n";
 }
 
 while(!trouveEgal && (abs(moins - plus)>0.001)){
@@ -247,14 +253,14 @@ tStarMoinstA = tStar-tA;
 xdtStar = cx3 * pow(tStarMoinstA, 3) + cx2 * pow(tStarMoinstA, 2) + cx1 * tStarMoinstA + cx0;
 ydtStar = cy3 * pow(tStarMoinstA, 3) + cy2 * pow(tStarMoinstA, 2) + cy1 * tStarMoinstA + cy0;
 
-xPrim_dStar = 3*cx3*pow(tStarMoinstA, 2) + 2*cx2*tStarMoinstA + cx1*tStar;
-yPrim_dStar = 3*cy3*pow(tStarMoinstA, 2) + 2*cy2*tStarMoinstA + cy1*tStar;
+xPrim_dStar = 3*cx3*pow(tStarMoinstA, 2) + 2*cx2*tStarMoinstA + cx1;
+yPrim_dStar = 3*cy3*pow(tStarMoinstA, 2) + 2*cy2*tStarMoinstA + cy1;
 
 f_tStar = (yPrim_dStar*(yR - ydtStar)) + (xPrim_dStar*(xR - xdtStar));
 
 if(f_tStar == 0){
 	egal = tStar;
-	trouveEgal == true;
+	trouveEgal = true;
 }else{
 	if(f_tStar < 0){
 		moins = tStar;
@@ -355,7 +361,7 @@ yQ = ydtStar - lambda * vy;
 
 double tQ = sqrt((xQ - xR)*(xQ - xR)+ (yQ - yR)*(yQ - yR))/ (*pointB).translationVelocity();
 
-std::cout << xR  << " , "<< yR << " // " << xdtStar  << " , "<< ydtStar << " // "<< xQ  << " , "<< yQ << " "<< ((xR-xdtStar)*(xR-xQ )+(yR-ydtStar)*(yR-yQ ))<<"\n";
+//std::cout << xR  << " , "<< yR << " // " << xdtStar  << " , "<< ydtStar << " // "<< xQ  << " , "<< yQ << " "<< ((xR-xdtStar)*(xR-xQ )+(yR-ydtStar)*(yR-yQ ))<<"\n";
 
 
 
