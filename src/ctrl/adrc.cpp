@@ -160,14 +160,151 @@ void ADRCCtrl::chooseVelocities(double& trans_vel, double& rot_vel,
 
   // calcul de P
 
-  //double tStar = (*pointA).date();
-  double tStar = (*pointB).date();
-  double xdtStar, ydtStar;
-  double xPrim_dStar, yPrim_dStar;
-  double f_tStar, fPrim_tStar;
-  double tStarMoinstA;
-  //std::cout << tStar  << " -----------------------\n";
-  for (int i = 0; i < 100; i++){
+//double tStar = (*pointA).date();
+double tStar = (*pointB).date();
+double xdtStar, ydtStar;
+double xPrim_dStar, yPrim_dStar;
+double f_tStar, fPrim_tStar;
+double tStarMoinstA;
+
+
+bool trouvePlus = false, trouveMoins = false, trouveEgal = false;
+double valeur;
+double plus, moins, egal, proche, xProche, yProche;
+double valProche = 999999.;
+int i = 0;
+double ecart = 0.1;
+int essais = 0;
+
+while(!trouveEgal && (!trouveMoins || !trouvePlus)){
+
+tStar = (*pointA).date() + ecart * delta_t * i;
+tStarMoinstA = tStar-tA;
+
+xdtStar = cx3 * pow(tStarMoinstA, 3) + cx2 * pow(tStarMoinstA, 2) + cx1 * tStarMoinstA + cx0;
+ydtStar = cy3 * pow(tStarMoinstA, 3) + cy2 * pow(tStarMoinstA, 2) + cy1 * tStarMoinstA + cy0;
+
+//xPrim_dStar = 3*cx3*pow(tStarMoinstA, 2) + 2*cx2*tStarMoinstA + cx1*tStar;
+//yPrim_dStar = 3*cy3*pow(tStarMoinstA, 2) + 2*cy2*tStarMoinstA + cy1*tStar;
+xPrim_dStar = 3*cx3*pow(tStarMoinstA, 2) + 2*cx2*tStarMoinstA + cx1;
+yPrim_dStar = 3*cy3*pow(tStarMoinstA, 2) + 2*cy2*tStarMoinstA + cy1;
+
+f_tStar = (yPrim_dStar*(yR - ydtStar)) + (xPrim_dStar*(xR - xdtStar));
+
+if(abs(f_tStar)<valProche){
+	valProche = abs(f_tStar);
+	proche = tStar;
+	xProche = xdtStar;
+	yProche = ydtStar;
+}
+
+
+if(f_tStar == 0){
+	egal = tStar;
+	trouveEgal == true;
+}else{
+	if(f_tStar < 0){
+		moins = tStar;
+		trouveMoins = true;
+	}else{
+		plus = tStar;
+		trouvePlus = true;
+
+	}
+}
+//std::cout << yAPrim << " " << yPrim_dStar<< " "<< yBPrim<<"\n";
+//std::cout << yA << " " << ydtStar<< " "<< yB<<"\n";
+//std::cout << " Un "<< tStar<< " "<< f_tStar<< " "<< trouvePlus<< " "<<trouveMoins<< "  "<<ecart * i<<"\n";
+
+tStar = (*pointB).date() - ecart * delta_t * i;
+tStarMoinstA = tStar-tA;
+
+xdtStar = cx3 * pow(tStarMoinstA, 3) + cx2 * pow(tStarMoinstA, 2) + cx1 * tStarMoinstA + cx0;
+ydtStar = cy3 * pow(tStarMoinstA, 3) + cy2 * pow(tStarMoinstA, 2) + cy1 * tStarMoinstA + cy0;
+
+
+xPrim_dStar = 3*cx3*pow(tStarMoinstA, 2) + 2*cx2*tStarMoinstA + cx1;
+yPrim_dStar = 3*cy3*pow(tStarMoinstA, 2) + 2*cy2*tStarMoinstA + cy1;
+
+f_tStar = (yPrim_dStar*(yR - ydtStar)) + (xPrim_dStar*(xR - xdtStar));
+
+if(abs(f_tStar)<valProche){
+	valProche = abs(f_tStar);
+	proche = tStar;
+	xProche = xdtStar;
+	yProche = ydtStar;
+}
+
+if(f_tStar == 0){
+	egal = tStar;
+	trouveEgal = true;
+}else{
+	if(f_tStar < 0){
+		moins = tStar;
+		trouveMoins = true;
+	}else{
+		plus = tStar;
+		trouvePlus = true;
+
+	}
+}
+
+if(ecart * i > 0.5){
+	i = 1;
+	ecart = ecart / 3;
+	essais++;
+	if(essais > 5){
+		trouveEgal = true;
+		egal = proche;
+		xdtStar = xProche;
+		ydtStar = yProche;
+
+		std::cout << " Abandon "<< proche <<"\n";
+	}
+}else{
+	i++;
+} 
+//std::cout << " Un "<< tStar<< " "<< f_tStar<< " "<< trouvePlus<< " "<<trouveMoins<< "  "<<ecart * i<<"\n";
+}
+
+while(!trouveEgal && (abs(moins - plus)>0.001)){
+
+tStar = (plus + moins)/2;
+tStarMoinstA = tStar-tA;
+
+xdtStar = cx3 * pow(tStarMoinstA, 3) + cx2 * pow(tStarMoinstA, 2) + cx1 * tStarMoinstA + cx0;
+ydtStar = cy3 * pow(tStarMoinstA, 3) + cy2 * pow(tStarMoinstA, 2) + cy1 * tStarMoinstA + cy0;
+
+xPrim_dStar = 3*cx3*pow(tStarMoinstA, 2) + 2*cx2*tStarMoinstA + cx1;
+yPrim_dStar = 3*cy3*pow(tStarMoinstA, 2) + 2*cy2*tStarMoinstA + cy1;
+
+f_tStar = (yPrim_dStar*(yR - ydtStar)) + (xPrim_dStar*(xR - xdtStar));
+
+if(abs(f_tStar)<valProche){
+	valProche = abs(f_tStar);
+	proche = tStar;
+	xProche = xdtStar;
+	yProche = ydtStar;
+}
+
+if(f_tStar == 0){
+	egal = tStar;
+	trouveEgal = true;
+}else{
+	if(f_tStar < 0){
+		moins = tStar;
+	}else{
+		plus = tStar;
+
+	}
+}
+std::cout << " Deux "<< f_tStar<< "\n";
+}
+
+
+
+//std::cout << tStar  << " -----------------------\n";
+/*for (int i = 0; i < 100; i++){
 
     tStarMoinstA = tStar-tA;
 
@@ -185,10 +322,10 @@ void ADRCCtrl::chooseVelocities(double& trans_vel, double& rot_vel,
       -pow(xPrim_dStar, 2) 
       -pow(yPrim_dStar, 2);
 
-    tStar = tStar - (f_tStar / fPrim_tStar);
-    //std::cout << tStar  << " f "<< f_tStar << " f'" << fPrim_tStar<<"\n";
-  }
-
+tStar = tStar - (f_tStar / fPrim_tStar);
+ //std::cout << tStar  << " f "<< f_tStar << " f'" << fPrim_tStar<<"\n";
+}
+*/
 
   //calcul de Q
 
@@ -198,16 +335,20 @@ void ADRCCtrl::chooseVelocities(double& trans_vel, double& rot_vel,
   double xQ = xdtStar + cos (thetaR);
   double yQ = ydtStar + sin (thetaR);
 
-  double vx = xQ - xR;
-  double vy = yQ - yR;
-  //xQ = xdtStar - (yR - ydtStar);
-  //yQ = ydtStar + (xR - xdtStar);
+//double vx = xQ - xR;
+//double vy = yQ - yR;
+double vx = xdtStar - xQ;
+double vy = ydtStar - yQ;
+//xQ = xdtStar - (yR - ydtStar);
+//yQ = ydtStar + (xR - xdtStar);
 
-  //normalisation?
-  std::cout <<  sqrt(pow(xQ - xR, 2)+ pow(yQ - yR, 2))<<"\n";
-  double a = 2;
-  double b = 2*vx + 2 *vy;
-  double c = vx * vx + vy * vy - 1;
+//normalisation?
+//std::cout <<  sqrt(pow(xQ - xR, 2)+ pow(yQ - yR, 2))<<"\n";
+//std::cout << vx <<" " << vy<< "\n";
+
+/*double a = 2;
+double b = 2*vx + 2 *vy;
+double c = vx * vx + vy * vy - 1;
 
   double solution1 = 0, solution2 = 0;
 
@@ -234,18 +375,20 @@ void ADRCCtrl::chooseVelocities(double& trans_vel, double& rot_vel,
       // std::cout<<"les racines sont "<<solution3<<" et "<<solution2;
     }
        
+*/
+double lambda = sqrt(1/(vx *vx + vy*vy));
 
-  if(solution1 * vx *vx + solution1*vy * vy > 0){
+if(lambda * vx *vx + lambda*vy * vy > 0){
 
-    xQ = xdtStar + solution1 * vx;
-    yQ = ydtStar + solution1 * vy;
-  }else{
-    xQ = xdtStar + solution2 * vx;
-    yQ = ydtStar + solution2 * vy;
-  }
+xQ = xdtStar + lambda * vx;
+yQ = ydtStar + lambda * vy;
+}else{
+xQ = xdtStar - lambda * vx;
+yQ = ydtStar - lambda * vy;
+}
 
 
-  double tQ = sqrt(pow(xQ - xR, 2)+ pow(yQ - yR, 2))/ (*pointB).translationVelocity();
+double tQ = sqrt((xQ - xR)*(xQ - xR)+ (yQ - yR)*(yQ - yR))/ (*pointB).translationVelocity();
 
   //std::cout << xR  << " , "<< yR << " // " << xdtStar  << " , "<< ydtStar << " // "<< xQ  << " , "<< yQ << " "<< ((xR-xdtStar)*(xR-xQ )+(yR-ydtStar)*(yR-yQ ))<<"\n";
 
@@ -260,13 +403,14 @@ void ADRCCtrl::chooseVelocities(double& trans_vel, double& rot_vel,
     std::cout <<omegaFinal<< " NANi?\n";
   }
 
-  std::cout << xR  << " , "<< yR << " // " << xQ  << " , "<< yQ << " // "<<  tQ << "  ; "<< thetaFinal << " ; "<< omegaFinal<<"\n";
+//std::cout << xR  << " , "<< yR << " // " << xQ  << " , "<< yQ << " // "<<  tQ << "  ; "<< thetaFinal << " ; "<< omegaFinal<<"\n";
 
+  searchGoal();  // updates the goal to be after the robot's date
   //searchGoal(0.05);  // updates the goal to be after the robot's date
   //searchGoal(0.2);  // updates the goal to be after the robot's date
   // gets the goal's velocities
-  //moving_velocity = (*goal)->translationVelocity();
-  moving_velocity = (*pointA).translationVelocity();  
+  moving_velocity = (*goal)->translationVelocity();
+  //moving_velocity = (*pointA).translationVelocity();  
   //turning_velocity = (*goal)->rotationVelocity();   
   // turning_velocity = (*pointA).rotationVelocity(); 
   turning_velocity = omegaFinal;
