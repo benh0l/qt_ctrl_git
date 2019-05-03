@@ -168,7 +168,8 @@ double tStarMoinstA;
 
 bool trouvePlus = false, trouveMoins = false, trouveEgal = false;
 double valeur;
-double plus, moins, egal;
+double plus, moins, egal, proche, xProche, yProche;
+double valProche = 999999.;
 int i = 0;
 double ecart = 0.1;
 int essais = 0;
@@ -187,6 +188,14 @@ xPrim_dStar = 3*cx3*pow(tStarMoinstA, 2) + 2*cx2*tStarMoinstA + cx1;
 yPrim_dStar = 3*cy3*pow(tStarMoinstA, 2) + 2*cy2*tStarMoinstA + cy1;
 
 f_tStar = (yPrim_dStar*(yR - ydtStar)) + (xPrim_dStar*(xR - xdtStar));
+
+if(abs(f_tStar)<valProche){
+	valProche = abs(f_tStar);
+	proche = tStar;
+	xProche = xdtStar;
+	yProche = ydtStar;
+}
+
 
 if(f_tStar == 0){
 	egal = tStar;
@@ -217,6 +226,13 @@ yPrim_dStar = 3*cy3*pow(tStarMoinstA, 2) + 2*cy2*tStarMoinstA + cy1;
 
 f_tStar = (yPrim_dStar*(yR - ydtStar)) + (xPrim_dStar*(xR - xdtStar));
 
+if(abs(f_tStar)<valProche){
+	valProche = abs(f_tStar);
+	proche = tStar;
+	xProche = xdtStar;
+	yProche = ydtStar;
+}
+
 if(f_tStar == 0){
 	egal = tStar;
 	trouveEgal = true;
@@ -237,7 +253,11 @@ if(ecart * i > 0.5){
 	essais++;
 	if(essais > 5){
 		trouveEgal = true;
-		std::cout << " Abandon "<< f_tStar <<"\n";
+		egal = proche;
+		xdtStar = xProche;
+		ydtStar = yProche;
+
+		std::cout << " Abandon "<< proche <<"\n";
 	}
 }else{
 	i++;
@@ -257,6 +277,13 @@ xPrim_dStar = 3*cx3*pow(tStarMoinstA, 2) + 2*cx2*tStarMoinstA + cx1;
 yPrim_dStar = 3*cy3*pow(tStarMoinstA, 2) + 2*cy2*tStarMoinstA + cy1;
 
 f_tStar = (yPrim_dStar*(yR - ydtStar)) + (xPrim_dStar*(xR - xdtStar));
+
+if(abs(f_tStar)<valProche){
+	valProche = abs(f_tStar);
+	proche = tStar;
+	xProche = xdtStar;
+	yProche = ydtStar;
+}
 
 if(f_tStar == 0){
 	egal = tStar;
@@ -376,11 +403,12 @@ std::cout <<omegaFinal<< " NANi?\n";
 
 //std::cout << xR  << " , "<< yR << " // " << xQ  << " , "<< yQ << " // "<<  tQ << "  ; "<< thetaFinal << " ; "<< omegaFinal<<"\n";
 
+  searchGoal();  // updates the goal to be after the robot's date
   //searchGoal(0.05);  // updates the goal to be after the robot's date
 //searchGoal(0.2);  // updates the goal to be after the robot's date
   // gets the goal's velocities
-  //moving_velocity = (*goal)->translationVelocity();
-  moving_velocity = (*pointA).translationVelocity();  
+  moving_velocity = (*goal)->translationVelocity();
+  //moving_velocity = (*pointA).translationVelocity();  
   //turning_velocity = (*goal)->rotationVelocity();   
 // turning_velocity = (*pointA).rotationVelocity(); 
 turning_velocity = omegaFinal;
