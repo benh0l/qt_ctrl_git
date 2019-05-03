@@ -20,10 +20,12 @@
 #include <gui/ctrlWdgt.hpp>
 #include <gui/display.hpp>
 
-// State class is used as parameters in this GUI's slots.
-// This macro is needed before the call to qRegisterMetaType in
-// the constructor.
+// State, Controller::LogLevel and std::string are used as parameters 
+// in this GUI's slots.  This macro is needed before the call 
+// to qRegisterMetaType in the constructor.
 Q_DECLARE_METATYPE(State) 
+Q_DECLARE_METATYPE(Controller::LogLevel) 
+Q_DECLARE_METATYPE(std::string) 
 
 /** @brief This class is the @ref refs_qt_mainwindow "Qt main window" 
  **        of <tt>@ref index "qt_ctrl"</tt> package.
@@ -167,6 +169,10 @@ class QtCtrlGUI : public QMainWindow {
 	     SIGNAL( commandsUpdated(const double&, const double&) ),
 	     this, SLOT( updateCommands(const double&, const double&)
 			 ) );
+    connect( controller, SIGNAL( log2ROS(const Controller::LogLevel &,
+					 const std::string &) ),
+	     this, SLOT( log2ROS(const Controller::LogLevel &,
+				 const std::string &) ) );
   }
   
   // @brief Asks in a dialog for a set of doubles, and returns it.
@@ -263,6 +269,12 @@ private Q_SLOTS:
   { ctrl_wdgt->updateCommands(trans_vel, rot_vel);
     display.updateCommands(trans_vel, rot_vel); } 
 
+  /// @brief Send a message to ROS' log of given level.
+  /// @param level  the log's severity level,
+  /// @param msg    the message.   @since 0.3.2
+  void log2ROS(const Controller::LogLevel &level,
+	       const std::string &msg)
+  { ctrl_node.log(level, msg); }
 }; // end of class QtCtrlGUI
 
 #endif // QTCTRL_GUI

@@ -10,8 +10,9 @@
 #ifndef QTCTRL_OBJECT
 #define QTCTRL_OBJECT
 
-#include <iostream>   // to get ostream 
-#include <math.h>     // to get M_PI and fabs
+#include <iostream>  // to get ostream 
+#include <math.h>    // to get M_PI and fabs
+#include <sstream>   // to get output string streams (ostringstream)
 
 /** 
  ** @brief This class defines static mathematical methods.
@@ -109,6 +110,12 @@ public:
   /// @param O  the output stream in which the description is written.
   /// @see ostream::operator<<(const Object&)
   virtual void writeTo(std::ostream& O) const = 0;
+
+  /// @brief Writes the object's description in a string.
+  /// @return  A string containing the object's description.
+  /// @see writeTo(std::ostream&)  @since 0.3.2
+  std::string toString() const 
+  { std::ostringstream ssb;  writeTo(ssb);  return ssb.str(); }
   
 }; // end of class Object
 

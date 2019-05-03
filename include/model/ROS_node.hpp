@@ -14,17 +14,7 @@
 #include <QThread>
 #include <QStringListModel>
 #include <ctrl/controller.hpp>
-// To workaround boost/qt4 problems that won't be bugfixed. Refer to
-//    https://bugreports.qt.io/browse/QTBUG-22829
-#ifndef Q_MOC_RUN
-#include <ros/ros.h>
-#include <tf/tf.h>
-//#include <boost/python.hpp>
-#endif
 #include <nav_msgs/Odometry.h>     // odometry
-
-
-using namespace ::ros::console::levels;
 
 /**
  ** @brief ROS node, getting sensors data and sending commands.
@@ -101,10 +91,6 @@ protected:
   void run();
   
 public:
-  /// @brief Log severity levels, comming from @ref refs_ros_console.
-  /// @since 0.2.1
-  typedef ::ros::console::Level LogLevel; 
-
   /** @brief The constructor requires <tt>main()</tt>'s arguments 
    **        (they can be forwarded to ROS).
    **
@@ -160,7 +146,7 @@ public:
    **      @ref refs_qt_stringlistmodel, connected(), 
    **      loggingModel(), loggingUpdated().
    **/
-  void log(const LogLevel &level, const std::string &msg);
+  void log(const Controller::LogLevel &level, const std::string &msg);
 
 Q_SIGNALS:  // this requires the Q_OBJECT macro
   /// @brief   Signals the @ref QtCtrlGUI "GUI" for log's update.

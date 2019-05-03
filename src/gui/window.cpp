@@ -133,6 +133,8 @@ QtCtrlGUI::QtCtrlGUI(const int argc, char** argv, QWidget* parent)
 	   this, SLOT( updateLogging() ) );
   // needed after Q_DECLARE_METATYPE and before the connects
   qRegisterMetaType<State>();
+  qRegisterMetaType<Controller::LogLevel>();
+  qRegisterMetaType<std::string>();
   connectCtrl(); // connects the controller signals to the GUI methods
 } // end of QtCtrlGUI::QtCtrlGUI(int, char**, QWidget*) --------------
 

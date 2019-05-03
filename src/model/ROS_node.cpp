@@ -87,7 +87,7 @@ void ROSnode::run() {
       std::ostringstream log_msg;
       motion_ctrl->chooseVelocities(vel.linear.x, vel.angular.z,
 				    log_msg);
-      log( Info, log_msg.str() ); 
+      log( Controller::LogLevel::Info, log_msg.str() ); 
       cmd_publisher.publish(vel);  // publish the commands
       // spin ROS once, and wait for next time step
       ros::spinOnce();
@@ -121,12 +121,14 @@ void ROSnode::init(const std::string &master_url,
  * See ROS::console, ROS::Time, QStringListModel,
  *     connected(), loggingModel(), loggingUpdated(). 
  */
-void ROSnode::log(const LogLevel &level, const std::string &msg) {
-  static const char* levelName[Count] =
+void ROSnode::log(const Controller::LogLevel &level,
+		  const std::string &msg) {
+  static const char* levelName[Controller::LogLevel::Count] =
     {"DEBUG", "INFO", "WARN", "ERROR", "FATAL"};
   std::stringstream log_model_msg;
 
-  if ( connected() && (level < Count) && ( !msg.empty() ) ) {
+  if ( connected() && (level < Controller::LogLevel::Count)
+       && ( !msg.empty() ) ) {
     // fills ROS log at the requested level
     ROS_LOG_STREAM(level, ROSCONSOLE_DEFAULT_NAME, msg);
     // change the GUI log: insert a line in the GUI log

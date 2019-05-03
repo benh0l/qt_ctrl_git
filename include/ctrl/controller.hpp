@@ -13,6 +13,14 @@
 #include <QObject>
 #include <model/motion.hpp>
 #include <model/state.hpp>
+// === To define log level, we need some of ROS' definitions ===
+// To workaround boost/qt4 problems that won't be bugfixed. Refer to
+//    https://bugreports.qt.io/browse/QTBUG-22829
+#ifndef Q_MOC_RUN
+#include <ros/ros.h>
+#include <tf/tf.h>
+//#include <boost/python.hpp>
+#endif
 
 /** 
  ** @brief Controller is the abstract class inherited by all 
@@ -101,6 +109,10 @@ public:
 				std::ostringstream& log_str) = 0;
 
   
+  /// @brief Log severity levels, comming from @ref refs_ros_console.
+  /// @since 0.3.2
+  typedef ::ros::console::Level LogLevel; 
+
 Q_SIGNALS:  // this requires the Q_OBJECT macro
 
   /// @brief Update the display of the state.
@@ -113,6 +125,12 @@ Q_SIGNALS:  // this requires the Q_OBJECT macro
   /// @since 0.3.1
   void commandsUpdated(const double& trans_vel,
 		       const double& rot_vel);
+
+  /// @brief Send a message to ROS' log of given level.
+  /// @param level  the log's severity level,
+  /// @param msg    the message.   @since 0.3.2
+  void log2ROS(const Controller::LogLevel &level,
+	       const std::string &msg);
 
 }; // end of class Controller
 
