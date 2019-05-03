@@ -132,7 +132,7 @@ private:
   /// @param lengths  the deflections or length of the arcs, 
   /// @param center   the turning centers of the arcs.
   void computeArcs(const Config& start, const int sgn[nbArcs], 
-		   const double defl_lngth[nbArcs], 
+		   const double lengths[nbArcs], 
 		   const Point* center[nbArcs]); 
 
   /// @brief Fills the arcs of path, when it does not move 
@@ -188,15 +188,15 @@ public:
   const double& length()  const { return total_length; }
 
   /// @brief Returns the length of given arc. 
-  /// @param part  the arc number (corrected if not valid).
-  /// @return    the length of the asked arc. 
+  /// @param idx  the arc number (corrected if not valid).
+  /// @return     the length of the asked arc. 
   /// @see validIndex
   const double& arcLength(const int idx) const 
   { return paths[ validIndex(idx) ].length; }
 
   /// @brief Returns the turning center of given arc. 
-  /// @param part  the arc number (corrected if not valid).
-  /// @return    the turning center of the asked arc. 
+  /// @param idx  the arc number (corrected if not valid).
+  /// @return     the turning center of the asked arc. 
   /// @see validIndex
   const Point& turnCenter(const int idx) const 
   { return paths[ validIndex(idx) ].center; }
